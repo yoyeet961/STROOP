@@ -1,8 +1,10 @@
-﻿using STROOP.Structs;
+using DarkModeForms;
+using STROOP.Structs;
 using STROOP.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace STROOP.Forms
@@ -14,12 +16,30 @@ namespace STROOP.Forms
 
         public MainLoadingForm()
         {
+            DarkModeCS dm;
             InitializeComponent();
             textBoxLoadingHelpfulHint.Text = HelpfulHintUtilities.GetRandomHelpfulHint();
             ControlUtilities.AddContextMenuStripFunctions(
                 textBoxLoadingHelpfulHint,
                 new List<string>() { "Show All Helpful Hints" },
                 new List<Action>() { () => HelpfulHintUtilities.ShowAllHelpfulHints() });
+            if (File.Exists("dark.cfg"))
+            {
+                dm = new DarkModeCS(this)
+                {
+                    ColorMode = DarkModeCS.DisplayMode.DarkMode,
+                };
+                //dm.ApplyTheme(true);
+            }
+            else
+            {
+                dm = new DarkModeCS(this)
+                {
+                    ColorMode = DarkModeCS.DisplayMode.ClearMode,
+                };
+                //dm.ApplyTheme(false);
+                //ApplyButtonStyleBecauseOtherwiseEverythingLooksLikeShit(this);
+            }
         }
 
         private void LoadingForm_Load(object sender, EventArgs e)
