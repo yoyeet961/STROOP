@@ -5,6 +5,10 @@ using STROOP.Structs.Configurations;
 using System.Windows.Forms;
 using STROOP.Utilities;
 using System.Linq;
+using System.IO;
+using DarkModeForms;
+using System.Drawing.Drawing2D;
+using OpenTK.Audio.OpenAL;
 
 namespace STROOP.Tabs
 {
@@ -121,7 +125,7 @@ namespace STROOP.Tabs
 
         public override string GetDisplayName() => "Options";
 
-        public void AddCogContextMenu(Control cogControl)
+        public void AddCogContextMenu(Control cogControl, DarkModeCS dm, Action<bool> applytheme)
         {
             cogControl.ContextMenuStrip = new ContextMenuStrip();
             cogControl.Click += (sender, e) => cogControl.ContextMenuStrip.Show(Cursor.Position);
@@ -136,8 +140,31 @@ namespace STROOP.Tabs
             ToolStripMenuItem goToOptionsTabItem = new ToolStripMenuItem("Go to Options Tab");
             goToOptionsTabItem.Click += (sender, e) => Config.TabControlMain.SelectedTab = Tab;
 
+            ToolStripMenuItem darkModeItem = new ToolStripMenuItem("Dark Mode");
+            darkModeItem.Click += (sender, e) => {
+                bool val = dm.IsDarkMode;
+                if (!val)
+                {
+                    File.Create("dark.cfg");
+                }
+                else
+                {
+                    try
+                    {
+                        File.Delete("dark.cfg");
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                }
+                //dm.ApplyTheme(val ? false : true);
+                applytheme(val ? false : true);
+            };
+
             cogControl.ContextMenuStrip.Items.Add(resetSavedSettingsItem);
             cogControl.ContextMenuStrip.Items.Add(goToOptionsTabItem);
+            cogControl.ContextMenuStrip.Items.Add(darkModeItem);
         }
 
         private void textBoxGotoRetrieve_LostFocus(object sender, ref float offset, float defaultOffset)
@@ -165,6 +192,26 @@ namespace STROOP.Tabs
 
             if (!updateView) return;
             base.Update(updateView);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            //bool val = checkBox1.Checked;
+            //if (val)
+            //{
+            //    File.Create("dark.cfg");
+            //}
+            //else
+            //{
+            //    try
+            //    {
+            //        File.Delete("dark.cfg");
+            //    }
+            //    catch (Exception)
+            //    {
+
+            //    }
+            //}
         }
     }
 }

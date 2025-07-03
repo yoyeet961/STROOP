@@ -1,7 +1,7 @@
 # STROOP (Refactored)
 *SuperMario64 Technical Runtime Observer and Object Processor*  
 
-_This is a fork from [SM64-TAS-ABC/STROOP](https://github.com/SM64-TAS-ABC/STROOP) designed to be faster, less memory intensive and more extensible. The feature set and code structure may differ severely from the baseline._
+_This is a fork of a fork from [SM64-TAS-ABC/STROOP](https://github.com/SM64-TAS-ABC/STROOP) designed to be faster, less memory intensive and more extensible. The feature set and code structure may differ severely from the baseline. This fork of the fork has dark mode._
 
   STROOP is a diagnostic tool for Super Mario 64 that displays and allows for simple editing of various game values and information. It can connect to a running emulator and update values in real time. Some core features include views of loaded/unloaded objects, Mario structure variables, camera + HUD values, an overhead map display, and many more.
 

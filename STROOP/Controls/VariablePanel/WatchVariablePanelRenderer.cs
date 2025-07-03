@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 using OpenTK;
@@ -13,8 +14,13 @@ namespace STROOP.Controls.VariablePanel
 {
     partial class WatchVariablePanel
     {
+        public static bool dmode = false;
         class WatchVariablePanelRenderer : Control
         {
+            public void SetDarkMode(bool value)
+            {
+                dmode = value;
+            }
             class OnDemand<T> where T : IDisposable
             {
                 readonly Func<T> factory;
@@ -166,6 +172,10 @@ namespace STROOP.Controls.VariablePanel
 
             public void Draw()
             {
+                if (File.Exists("dark.cfg"))
+                {
+                    dmode = true;
+                }
                 //Return if not focused and recently enough refreshed to save CPU
                 var form = FindForm();
                 if (form != Form.ActiveForm && (DateTime.Now - lastRefreshed).TotalMilliseconds < idleRefreshMilliseconds)
@@ -270,7 +280,7 @@ namespace STROOP.Controls.VariablePanel
                             yCoord + elementHeight < visibleRegion.Top)
                             continue;
 
-                        var c = ctrl.IsSelected ? Color.Blue : ctrl.currentColor;
+                        var c = ctrl.IsSelected ? (dmode ? Color.FromArgb(64,64,64) : Color.Blue) : (dmode ? Color.FromArgb(32,32,32) : ctrl.currentColor);
                         if (c != Parent.BackColor)
                             using (var brush = new SolidBrush(c))
                                 g.FillRectangle(brush, x * elementWidth, yCoord, elementWidth, elementHeight);
@@ -315,7 +325,7 @@ namespace STROOP.Controls.VariablePanel
                         }
                         else
                             ctrlData.nameTextOffset = 0;
-                        g.DrawString(ctrl.VarName, varNameFont, ctrl.IsSelected ? Brushes.White : Brushes.Black, txtPoint);
+                        g.DrawString(ctrl.VarName, varNameFont, dmode ? Brushes.White : (ctrl.IsSelected ? Brushes.White : Brushes.Black), txtPoint);
                     }
 
                     ResetIterators();
@@ -341,7 +351,7 @@ namespace STROOP.Controls.VariablePanel
                         else
                         {
                             var txtPoint = new Point((x + 1) * elementWidth - elementMarginLeftRight, yCoord + elementMarginTopBottom);
-                            g.DrawString(ctrl.WatchVarWrapper.GetValueText(), Font, ctrl.IsSelected ? Brushes.White : Brushes.Black, txtPoint, rightAlignFormat);
+                            g.DrawString(ctrl.WatchVarWrapper.GetValueText(), Font, dmode ? Brushes.White : (ctrl.IsSelected ? Brushes.White : Brushes.Black), txtPoint, rightAlignFormat);
                         }
                         DrawLockAndFixImages(ctrl, x * elementWidth + elementNameWidth, yCoord);
                     }

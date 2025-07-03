@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.splitContainerOptions = new STROOP.BetterSplitContainer();
             this.checkedListBoxObjectSlotOverlaysToShow = new System.Windows.Forms.CheckedListBox();
             this.checkedListBoxSavedSettings = new System.Windows.Forms.CheckedListBox();
@@ -36,6 +35,7 @@
             this.buttonOptionsResetSavedSettings = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.watchVariablePanelOptions = new STROOP.Controls.VariablePanel.WatchVariablePanel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerOptions)).BeginInit();
             this.splitContainerOptions.Panel1.SuspendLayout();
             this.splitContainerOptions.Panel2.SuspendLayout();
@@ -56,6 +56,7 @@
             // splitContainerOptions.Panel1
             // 
             this.splitContainerOptions.Panel1.AutoScroll = true;
+            this.splitContainerOptions.Panel1.Controls.Add(this.checkBox1);
             this.splitContainerOptions.Panel1.Controls.Add(this.checkedListBoxObjectSlotOverlaysToShow);
             this.splitContainerOptions.Panel1.Controls.Add(this.checkedListBoxSavedSettings);
             this.splitContainerOptions.Panel1.Controls.Add(this.checkBoxUseRomHack);
@@ -80,7 +81,7 @@
             this.checkedListBoxObjectSlotOverlaysToShow.FormattingEnabled = true;
             this.checkedListBoxObjectSlotOverlaysToShow.Location = new System.Drawing.Point(266, 7);
             this.checkedListBoxObjectSlotOverlaysToShow.Name = "checkedListBoxObjectSlotOverlaysToShow";
-            this.checkedListBoxObjectSlotOverlaysToShow.Size = new System.Drawing.Size(176, 274);
+            this.checkedListBoxObjectSlotOverlaysToShow.Size = new System.Drawing.Size(176, 259);
             this.checkedListBoxObjectSlotOverlaysToShow.TabIndex = 41;
             // 
             // checkedListBoxSavedSettings
@@ -90,7 +91,7 @@
             this.checkedListBoxSavedSettings.FormattingEnabled = true;
             this.checkedListBoxSavedSettings.Location = new System.Drawing.Point(6, 7);
             this.checkedListBoxSavedSettings.Name = "checkedListBoxSavedSettings";
-            this.checkedListBoxSavedSettings.Size = new System.Drawing.Size(257, 274);
+            this.checkedListBoxSavedSettings.Size = new System.Drawing.Size(257, 259);
             this.checkedListBoxSavedSettings.TabIndex = 40;
             // 
             // checkBoxUseRomHack
@@ -99,7 +100,7 @@
             this.checkBoxUseRomHack.Location = new System.Drawing.Point(10, 320);
             this.checkBoxUseRomHack.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxUseRomHack.Name = "checkBoxUseRomHack";
-            this.checkBoxUseRomHack.Size = new System.Drawing.Size(166, 17);
+            this.checkBoxUseRomHack.Size = new System.Drawing.Size(163, 17);
             this.checkBoxUseRomHack.TabIndex = 2;
             this.checkBoxUseRomHack.Text = "Enable STROOP ROM hack*";
             this.checkBoxUseRomHack.UseVisualStyleBackColor = true;
@@ -126,13 +127,27 @@
             // 
             // watchVariablePanelOptions
             // 
+            this.watchVariablePanelOptions.AutoScroll = true;
             this.watchVariablePanelOptions.DataPath = "Config/OptionsData.xml";
             this.watchVariablePanelOptions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.watchVariablePanelOptions.elementNameWidth = null;
+            this.watchVariablePanelOptions.elementValueWidth = null;
             this.watchVariablePanelOptions.Location = new System.Drawing.Point(2, 2);
             this.watchVariablePanelOptions.Margin = new System.Windows.Forms.Padding(0);
             this.watchVariablePanelOptions.Name = "watchVariablePanelOptions";
             this.watchVariablePanelOptions.Size = new System.Drawing.Size(440, 457);
             this.watchVariablePanelOptions.TabIndex = 5;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(178, 320);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(83, 17);
+            this.checkBox1.TabIndex = 42;
+            this.checkBox1.Text = "Dark Mode";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // OptionsTab
             // 
@@ -140,7 +155,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainerOptions);
             this.Name = "OptionsTab";
-            this.Size = new System.Drawing.Size(915, 463);
             this.splitContainerOptions.Panel1.ResumeLayout(false);
             this.splitContainerOptions.Panel1.PerformLayout();
             this.splitContainerOptions.Panel2.ResumeLayout(false);
@@ -159,5 +173,6 @@
         private System.Windows.Forms.Button buttonOptionsResetSavedSettings;
         private System.Windows.Forms.Label label3;
         private STROOP.Controls.VariablePanel.WatchVariablePanel watchVariablePanelOptions;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

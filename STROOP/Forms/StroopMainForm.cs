@@ -15,6 +15,8 @@ using STROOP.Structs.Configurations;
 using STROOP.Forms;
 using STROOP.Models;
 using STROOP.Core.Variables;
+using DarkModeForms;
+using System.IO;
 
 namespace STROOP
 {
@@ -36,7 +38,29 @@ namespace STROOP
         List<Process> _availableProcesses = new List<Process>();
             
         public readonly SearchVariableDialog searchVariableDialog;
-        
+
+        private void ApplyButtonStyleBecauseOtherwiseEverythingLooksLikeShit(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                if (control is Button btn)
+                {
+                    btn.FlatStyle = FlatStyle.System;
+                    btn.UseVisualStyleBackColor = false;
+                }
+
+                if (control.HasChildren)
+                    ApplyButtonStyleBecauseOtherwiseEverythingLooksLikeShit(control);
+            }
+        }
+
+
+        public static DarkModeCS dm;
+        public void applytheme(bool d)
+        {
+            dm.ApplyTheme(d);
+            ApplyButtonStyleBecauseOtherwiseEverythingLooksLikeShit(this);
+        }
         public StroopMainForm(bool isMainForm)
         {
             this.searchVariableDialog = new SearchVariableDialog(this);
@@ -44,7 +68,35 @@ namespace STROOP
             InitializeComponent();
             InitTabs();
             ObjectSlotsManager = new ObjectSlotsManager(this, tabControlMain);
-            GetTab<Tabs.OptionsTab>().AddCogContextMenu(pictureBoxCog);
+            this.ControlAdded += StroopMainForm_ControlAdded;
+            if (File.Exists("dark.cfg"))
+            {
+                dm = new DarkModeCS(this)
+                {
+                    ColorMode = DarkModeCS.DisplayMode.DarkMode,
+                };
+                DarkMode.Checked = true;
+                //dm.ApplyTheme(true);
+            } else
+            {
+                dm = new DarkModeCS(this)
+                {
+                    ColorMode = DarkModeCS.DisplayMode.ClearMode,
+                };
+                //dm.ApplyTheme(false);
+                //ApplyButtonStyleBecauseOtherwiseEverythingLooksLikeShit(this);
+            }
+            GetTab<Tabs.OptionsTab>().AddCogContextMenu(pictureBoxCog, dm, applytheme);
+        }
+
+        private void StroopMainForm_ControlAdded(object sender, ControlEventArgs e)
+        {
+            if (e.Control is Button btn)
+            {
+                btn.FlatStyle = FlatStyle.System;
+                btn.UseVisualStyleBackColor = false;
+            }
+            e.Control.ControlAdded += StroopMainForm_ControlAdded;
         }
 
         public void ShowSearchDialog()
@@ -660,6 +712,38 @@ namespace STROOP
                     Config.Stream = null;
                 }
             }
+        }
+
+        private void panelConnect_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            bool val = DarkMode.Checked;
+            if (val)
+            {
+                File.Create("dark.cfg");
+            }
+            else
+            {
+                try
+                {
+                    File.Delete("dark.cfg");
+                }
+                catch (Exception)
+                {
+                    
+                }
+            }
+            dm.ApplyTheme(val);
+            ApplyButtonStyleBecauseOtherwiseEverythingLooksLikeShit(this);
+        }
+
+        private void pictureBoxCog_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -67,6 +67,7 @@ namespace STROOP
             this.tabControlMain = new STROOP.TabControlEx();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBoxObjects = new System.Windows.Forms.GroupBox();
+            this.DarkMode = new System.Windows.Forms.CheckBox();
             this.comboBoxSelectionMethod = new System.Windows.Forms.ComboBox();
             this.labelSelectionMethod = new System.Windows.Forms.Label();
             this.comboBoxLabelMethod = new System.Windows.Forms.ComboBox();
@@ -95,7 +96,7 @@ namespace STROOP
             this.labelProcessSelect.Location = new System.Drawing.Point(145, 15);
             this.labelProcessSelect.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelProcessSelect.Name = "labelProcessSelect";
-            this.labelProcessSelect.Size = new System.Drawing.Size(78, 13);
+            this.labelProcessSelect.Size = new System.Drawing.Size(79, 13);
             this.labelProcessSelect.TabIndex = 1;
             this.labelProcessSelect.Text = "Connected To:";
             // 
@@ -105,7 +106,7 @@ namespace STROOP
             this.labelVersionNumber.AutoSize = true;
             this.labelVersionNumber.Location = new System.Drawing.Point(868, 15);
             this.labelVersionNumber.Name = "labelVersionNumber";
-            this.labelVersionNumber.Size = new System.Drawing.Size(41, 13);
+            this.labelVersionNumber.Size = new System.Drawing.Size(44, 13);
             this.labelVersionNumber.TabIndex = 5;
             this.labelVersionNumber.Text = "version";
             this.labelVersionNumber.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -136,6 +137,7 @@ namespace STROOP
             this.panelConnect.Name = "panelConnect";
             this.panelConnect.Size = new System.Drawing.Size(947, 741);
             this.panelConnect.TabIndex = 17;
+            this.panelConnect.Paint += new System.Windows.Forms.PaintEventHandler(this.panelConnect_Paint);
             // 
             // buttonRefreshAndConnect
             // 
@@ -162,9 +164,9 @@ namespace STROOP
             // buttonProcessOptions
             // 
             this.buttonProcessOptions.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonProcessOptions.Location = new System.Drawing.Point(511, 460);
+            this.buttonProcessOptions.Location = new System.Drawing.Point(476, 460);
             this.buttonProcessOptions.Name = "buttonProcessOptions";
-            this.buttonProcessOptions.Size = new System.Drawing.Size(77, 37);
+            this.buttonProcessOptions.Size = new System.Drawing.Size(112, 37);
             this.buttonProcessOptions.TabIndex = 3;
             this.buttonProcessOptions.Text = "Options";
             this.buttonProcessOptions.UseVisualStyleBackColor = true;
@@ -229,14 +231,14 @@ namespace STROOP
             this.contextMenuStripProcessesList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.itemShowSimilarProcesses});
             this.contextMenuStripProcessesList.Name = "contextMenuStripProcessesList";
-            this.contextMenuStripProcessesList.Size = new System.Drawing.Size(197, 26);
+            this.contextMenuStripProcessesList.Size = new System.Drawing.Size(204, 26);
             this.contextMenuStripProcessesList.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripProcessesList_Opening);
             // 
             // itemShowSimilarProcesses
             // 
             this.itemShowSimilarProcesses.CheckOnClick = true;
             this.itemShowSimilarProcesses.Name = "itemShowSimilarProcesses";
-            this.itemShowSimilarProcesses.Size = new System.Drawing.Size(196, 22);
+            this.itemShowSimilarProcesses.Size = new System.Drawing.Size(203, 22);
             this.itemShowSimilarProcesses.Text = "Show Similar Processes";
             this.itemShowSimilarProcesses.CheckedChanged += new System.EventHandler(this.itemShowSimilarProcesses_CheckedChanged);
             // 
@@ -245,7 +247,7 @@ namespace STROOP
             this.labelFpsCounter.AutoSize = true;
             this.labelFpsCounter.Location = new System.Drawing.Point(88, 15);
             this.labelFpsCounter.Name = "labelFpsCounter";
-            this.labelFpsCounter.Size = new System.Drawing.Size(39, 13);
+            this.labelFpsCounter.Size = new System.Drawing.Size(37, 13);
             this.labelFpsCounter.TabIndex = 18;
             this.labelFpsCounter.Text = "FPS: 0";
             // 
@@ -276,7 +278,7 @@ namespace STROOP
             this.labelDebugText.Location = new System.Drawing.Point(271, 15);
             this.labelDebugText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelDebugText.Name = "labelDebugText";
-            this.labelDebugText.Size = new System.Drawing.Size(63, 13);
+            this.labelDebugText.Size = new System.Drawing.Size(65, 13);
             this.labelDebugText.TabIndex = 1;
             this.labelDebugText.Text = "Debug Text";
             this.labelDebugText.Visible = false;
@@ -300,6 +302,7 @@ namespace STROOP
             this.pictureBoxCog.Size = new System.Drawing.Size(20, 20);
             this.pictureBoxCog.TabIndex = 23;
             this.pictureBoxCog.TabStop = false;
+            this.pictureBoxCog.Click += new System.EventHandler(this.pictureBoxCog_Click);
             // 
             // buttonShowTopPane
             // 
@@ -470,6 +473,7 @@ namespace STROOP
             // 
             // groupBoxObjects
             // 
+            this.groupBoxObjects.Controls.Add(this.DarkMode);
             this.groupBoxObjects.Controls.Add(this.comboBoxSelectionMethod);
             this.groupBoxObjects.Controls.Add(this.labelSelectionMethod);
             this.groupBoxObjects.Controls.Add(this.comboBoxLabelMethod);
@@ -490,6 +494,18 @@ namespace STROOP
             this.groupBoxObjects.TabStop = false;
             this.groupBoxObjects.Text = "Objects";
             // 
+            // DarkMode
+            // 
+            this.DarkMode.AutoSize = true;
+            this.DarkMode.Location = new System.Drawing.Point(277, 17);
+            this.DarkMode.Name = "DarkMode";
+            this.DarkMode.Size = new System.Drawing.Size(83, 17);
+            this.DarkMode.TabIndex = 24;
+            this.DarkMode.Text = "Dark Mode";
+            this.DarkMode.UseVisualStyleBackColor = true;
+            this.DarkMode.Visible = false;
+            this.DarkMode.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // comboBoxSelectionMethod
             // 
             this.comboBoxSelectionMethod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -506,7 +522,7 @@ namespace STROOP
             this.labelSelectionMethod.AutoSize = true;
             this.labelSelectionMethod.Location = new System.Drawing.Point(362, 18);
             this.labelSelectionMethod.Name = "labelSelectionMethod";
-            this.labelSelectionMethod.Size = new System.Drawing.Size(93, 13);
+            this.labelSelectionMethod.Size = new System.Drawing.Size(99, 13);
             this.labelSelectionMethod.TabIndex = 12;
             this.labelSelectionMethod.Text = "Selection Method:";
             // 
@@ -526,7 +542,7 @@ namespace STROOP
             this.labelLabelMethod.AutoSize = true;
             this.labelLabelMethod.Location = new System.Drawing.Point(547, 18);
             this.labelLabelMethod.Name = "labelLabelMethod";
-            this.labelLabelMethod.Size = new System.Drawing.Size(75, 13);
+            this.labelLabelMethod.Size = new System.Drawing.Size(80, 13);
             this.labelLabelMethod.TabIndex = 12;
             this.labelLabelMethod.Text = "Label Method:";
             // 
@@ -537,7 +553,7 @@ namespace STROOP
             this.labelSortMethod.Location = new System.Drawing.Point(738, 18);
             this.labelSortMethod.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelSortMethod.Name = "labelSortMethod";
-            this.labelSortMethod.Size = new System.Drawing.Size(68, 13);
+            this.labelSortMethod.Size = new System.Drawing.Size(74, 13);
             this.labelSortMethod.TabIndex = 5;
             this.labelSortMethod.Text = "Sort Method:";
             // 
@@ -556,7 +572,7 @@ namespace STROOP
             this.labelSlotSize.AutoSize = true;
             this.labelSlotSize.Location = new System.Drawing.Point(110, 19);
             this.labelSlotSize.Name = "labelSlotSize";
-            this.labelSlotSize.Size = new System.Drawing.Size(51, 13);
+            this.labelSlotSize.Size = new System.Drawing.Size(53, 13);
             this.labelSlotSize.TabIndex = 11;
             this.labelSlotSize.Text = "Slot Size:";
             // 
@@ -600,8 +616,8 @@ namespace STROOP
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(947, 741);
-            this.Controls.Add(this.labelDebugText);
             this.Controls.Add(this.panelConnect);
+            this.Controls.Add(this.labelDebugText);
             this.Controls.Add(this.pictureBoxCog);
             this.Controls.Add(this.comboBoxReadWriteMode);
             this.Controls.Add(this.comboBoxRomVersion);
@@ -687,6 +703,7 @@ namespace STROOP
         internal TabControlEx tabControlMain;
         private TabPage tabPage1;
         private Button buttonProcessOptions;
+        private CheckBox DarkMode;
     }
 }
 

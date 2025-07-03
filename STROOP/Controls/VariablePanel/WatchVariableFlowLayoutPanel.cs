@@ -107,6 +107,11 @@ namespace STROOP.Controls.VariablePanel
 
         WatchVariablePanelRenderer renderer;
 
+        public void SetDarkMode(bool value)
+        {
+            renderer.SetDarkMode(value);
+        }
+
         public WatchVariableControl hoveringWatchVariableControl => renderer.GetVariableAt(renderer.PointToClient(System.Windows.Forms.Cursor.Position)).ctrl;
 
 

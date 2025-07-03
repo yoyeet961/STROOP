@@ -1,4 +1,6 @@
-﻿namespace STROOP.Tabs
+﻿using System.Drawing;
+
+namespace STROOP.Tabs
 {
     partial class MarioTab
     {
