@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿using Microsoft.Win32;
+=======
+using Microsoft.Win32;
+>>>>>>> b937eb9fee820e247ba1399c95b1f7ebcee1a86b
 using System.Drawing;
 using System;
 using System.ComponentModel;
@@ -10,7 +14,10 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Xml.Linq;
+<<<<<<< HEAD
 using STROOP.Controls.VariablePanel;
+=======
+>>>>>>> b937eb9fee820e247ba1399c95b1f7ebcee1a86b
 
 
 namespace DarkModeForms
@@ -888,11 +895,14 @@ namespace DarkModeForms
                 flowLayout.BorderStyle = BorderStyle.None;
             }
 
+<<<<<<< HEAD
             if (control is WatchVariablePanel watchvariablepanel)
             {
                 watchvariablepanel.SetDarkMode(IsDarkMode);
             }
 
+=======
+>>>>>>> b937eb9fee820e247ba1399c95b1f7ebcee1a86b
 
             //Debug.Print(string.Format("{0}: {1}", control.Name, control.GetType().Name));
 
@@ -1727,4 +1737,8 @@ namespace DarkModeForms
         /// </summary>
         public bool LastThemeAppliedIsDark { get; set; }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b937eb9fee820e247ba1399c95b1f7ebcee1a86b

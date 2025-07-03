@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -54,6 +54,7 @@ namespace STROOP
             }
         }
 
+<<<<<<< HEAD
 
         public static DarkModeCS dm;
         public void applytheme(bool d)
@@ -61,6 +62,9 @@ namespace STROOP
             dm.ApplyTheme(d);
             ApplyButtonStyleBecauseOtherwiseEverythingLooksLikeShit(this);
         }
+=======
+        DarkModeCS dm;
+>>>>>>> b937eb9fee820e247ba1399c95b1f7ebcee1a86b
         public StroopMainForm(bool isMainForm)
         {
             this.searchVariableDialog = new SearchVariableDialog(this);
@@ -68,6 +72,10 @@ namespace STROOP
             InitializeComponent();
             InitTabs();
             ObjectSlotsManager = new ObjectSlotsManager(this, tabControlMain);
+<<<<<<< HEAD
+=======
+            GetTab<Tabs.OptionsTab>().AddCogContextMenu(pictureBoxCog);
+>>>>>>> b937eb9fee820e247ba1399c95b1f7ebcee1a86b
             this.ControlAdded += StroopMainForm_ControlAdded;
             if (File.Exists("dark.cfg"))
             {
@@ -86,7 +94,11 @@ namespace STROOP
                 //dm.ApplyTheme(false);
                 //ApplyButtonStyleBecauseOtherwiseEverythingLooksLikeShit(this);
             }
+<<<<<<< HEAD
             GetTab<Tabs.OptionsTab>().AddCogContextMenu(pictureBoxCog, dm, applytheme);
+=======
+            
+>>>>>>> b937eb9fee820e247ba1399c95b1f7ebcee1a86b
         }
 
         private void StroopMainForm_ControlAdded(object sender, ControlEventArgs e)
@@ -740,10 +752,13 @@ namespace STROOP
             dm.ApplyTheme(val);
             ApplyButtonStyleBecauseOtherwiseEverythingLooksLikeShit(this);
         }
+<<<<<<< HEAD
 
         private void pictureBoxCog_Click(object sender, EventArgs e)
         {
 
         }
+=======
+>>>>>>> b937eb9fee820e247ba1399c95b1f7ebcee1a86b
     }
 }
