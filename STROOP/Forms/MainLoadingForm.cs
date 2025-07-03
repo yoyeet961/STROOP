@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 ﻿using DarkModeForms;
-=======
-using DarkModeForms;
->>>>>>> b937eb9fee820e247ba1399c95b1f7ebcee1a86b
 using STROOP.Structs;
 using STROOP.Utilities;
 using System;

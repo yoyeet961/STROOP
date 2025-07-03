@@ -503,10 +503,7 @@ namespace STROOP
             this.DarkMode.TabIndex = 24;
             this.DarkMode.Text = "Dark Mode";
             this.DarkMode.UseVisualStyleBackColor = true;
-<<<<<<< HEAD
             this.DarkMode.Visible = false;
-=======
->>>>>>> b937eb9fee820e247ba1399c95b1f7ebcee1a86b
             this.DarkMode.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // comboBoxSelectionMethod
